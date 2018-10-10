@@ -26,10 +26,12 @@ def report(freq,count):
 
 def main():
     words = Frequency()
+    with open(__file__,'rt') as fi:
+        text = fi.read()
 
-    for t in tokenize("foo bar foo beep baz beep"):
+    for t in tokenize(text):
         words[t]+=1
-    report(words,3)
+    report(words,20)
 
 
 if __name__=="__main__":

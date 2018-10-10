@@ -71,7 +71,9 @@ def tokenize(text):
         yield Token(t)
 
 def main():
-    for t in tokenize("foo bar baz beep"):
+    with open(__file__,'rt') as fi:
+        text = fi.read()
+    for t in tokenize(text):
         print(t)
 
 # this is way overcomplicated for the problem. But it will make later code easier
