@@ -20,9 +20,11 @@ def tokenize(text):
         t = s.get_token()
         if not t:
             break
-        # TODO: figure out whether it is a word or punctuation
         # TODO: deal with apostrophe and abbreviations: 'twasn't a wee bairn in sight o' Dr. O'Reilly's flat.
-        yield Token(t,TokenT.WORD)
+
+        # TODO: figure out whether it is a word or punctuation
+        tt = TokenT.PUNCTUATION if t[0] in s.punctuation_chars else TokenT.WORD
+        yield Token(t,tt)
 
 class Frequency(defaultdict):
     # using defaultdict in this way allows you to replace
@@ -47,12 +49,13 @@ import click
 @click.command()
 @click.argument("files",nargs=-1,type=click.File('rUt'))
 def main(files):
-    words = Frequency()
+    hyper = defaultdict(Frequency)
     for fname in files:
         for t in tokenize(fname):
-            # TODO: distinguish between punctuation and words
-            words[t]+=1
-    report(words,200)
+            hyper[t.type][t]+=1
+
+    for tt in TokenT:
+        report(hyper[tt],200)
 
 
 if __name__=="__main__":
