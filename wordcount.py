@@ -17,12 +17,19 @@ class Frequency(defaultdict):
     def __missing__(self,key):
         return 0
     
+def report(freq,count):
+    ll = [(v,k) for (k,v) in freq.items()]
+    ll.sort(reverse=True)
+    for v,k in ll[:count]:
+        print("{}\t{}".format(v,k.text))
+
+
 def main():
     words = Frequency()
 
     for t in tokenize("foo bar foo beep baz beep"):
         words[t]+=1
-    print(words)
+    report(words,3)
 
 
 if __name__=="__main__":
