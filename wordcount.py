@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+from shlex import shlex
 from collections import namedtuple,defaultdict
 from enum import Enum
 
@@ -10,7 +10,11 @@ class TokenT(Enum):
 Token = namedtuple("Token",['text','type'])
         
 def tokenize(text):
-    for t in text.split():
+    s = shlex(text,punctuation_chars=True)
+    while True:
+        t = s.get_token()
+        if not t:
+            break
         yield Token(t,TokenT.WORD)
 
 class Frequency(defaultdict):
@@ -27,10 +31,8 @@ def report(freq,count):
 def main():
     words = Frequency()
     with open(__file__,'rt') as fi:
-        text = fi.read()
-
-    for t in tokenize(text):
-        words[t]+=1
+        for t in tokenize(fi):
+            words[t]+=1
     report(words,20)
 
 
