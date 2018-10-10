@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 
-class Token:
-    def __init__(self,text):
-        self.text = text
-    def __str__(self):
-        return self.text
-    def __repr__(self):
-        return "<Token text='{}'>".format(self.text)
+from collections import namedtuple
+from enum import Enum
+
+class TokenT(Enum):
+    WORD = 1
+    PUNCTUATION = 2
+
+Token = namedtuple("Token",['text','type'])
         
 def tokenize(text):
     for t in text.split():
-        yield Token(t)
+        yield Token(t,TokenT.WORD)
 
 def main():
     for t in tokenize("foo bar baz beep"):
