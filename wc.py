@@ -1,3 +1,14 @@
+
+
+## this is only slightly less naive
+# than the bare 'string'.split()
+# but breaking it out as a separate function
+# lets us change it without affecting the 
+# rest of the code
+import re
+tokenize = re.compile(r"[.,?! \t\n]").split
+
+
 class WordCounter():
     def __init__(self, filename):
         self.fname = filename
@@ -7,12 +18,7 @@ class WordCounter():
 
         my_dict = {}
 
-        a = self.content.replace('.', ' ').replace(',', ' ').replace('!', '')
-
-        # print(a)
-        b = a.split()
-        # where word represents each iterable in 'b'
-        for word in b:
+        for word in tokenize(self.content):
             if word not in my_dict:
                 my_dict[word] = 1
             else:
