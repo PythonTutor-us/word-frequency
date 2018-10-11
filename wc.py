@@ -1,7 +1,10 @@
 class WordCounter():
     def __init__(self, filename):
-        self.fname = "test.txt"
-        self.content = open(self.fname, 'r').read()
+        self.fname = filename
+        with open(self.fname,'rUt') as fi:
+            self.content = fi.read()
+            # the file automatically closes at the end of the with block
+
         my_dict = {}
 
         a = self.content.replace('.', ' ').replace(',', ' ').replace('!', '')
@@ -48,9 +51,6 @@ class WordCounter():
         # i need this to take the value from "tops" line 81
         for element in tops:
             print(element[1], element[0])
-
-
-# close file somewhere
 
 
 def main():
