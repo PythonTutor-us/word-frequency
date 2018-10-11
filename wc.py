@@ -19,7 +19,8 @@ class WordCounter():
 
         for k, v in my_dict.items():
             a_list = my_list.append((v, k))
-            return a_list
+            # you cannot return anything from a constructor (__init__ method)
+            #return a_list
 
         b_list = sorted(a_list, reverse=True)
         tops = b_list[:20]
