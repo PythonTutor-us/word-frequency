@@ -58,7 +58,7 @@ def main():
     # to work on file in the class must input "string-indicating-file-name"
     test_file = WordCounter("test.txt")
 
-    pretty_print_method(test_file)
+    test_file.pretty_print_method()
 
 
 if __name__ == '__main__':
