@@ -25,28 +25,28 @@ class WordCounter():
         tops = b_list[:20]
 
 
-def word_count_method():
-    len(content.split())
-    self.word_count = len(content.split())
+    def word_count_method(self):
+        len(content.split())
+        self.word_count = len(content.split())
 
 
-def punct_count_method():
-    punct = ".',"
+    def punct_count_method(self):
+        punct = ".',"
 
-    d = {}
+        d = {}
 
-    for item in content:
-        if item in punct:
-            if item not in d:
-                d[item] = 0
-            d[item] += 1
-        # self.punct_count =
+        for item in content:
+            if item in punct:
+                if item not in d:
+                    d[item] = 0
+                d[item] += 1
+            # self.punct_count =
 
 
-def pretty_print_method(self):
-    # i need this to take the value from "tops" line 81
-    for element in tops:
-        print(element[1], element[0])
+    def pretty_print_method(self):
+        # i need this to take the value from "tops" line 81
+        for element in tops:
+            print(element[1], element[0])
 
 
 # close file somewhere
